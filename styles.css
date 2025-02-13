@@ -357,7 +357,11 @@ h1 {
     text-align: center;
     padding: 40px;
     background: #ffffff;
-    
+    width: 80%;  /* Adjust width as needed */
+    height: auto; /* Adjust height automatically */
+    margin: auto; /* Centering the section */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Optional shadow */
 }
 
 .team-container {
