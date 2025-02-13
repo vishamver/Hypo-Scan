@@ -1,0 +1,435 @@
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Header Styling */
+header {
+    background-color: #333;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    height: 70px; /* Fixed height */
+}
+
+/* Logo Styling */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Navigation Bar Styling */
+.navbar {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Center navigation */
+    width: 100%;
+}
+
+.navbar li {
+    margin: 0 15px; /* Adjust spacing */
+}
+.navbar li {
+    margin-left: 100px; /* Adjust spacing between menu items */
+}
+.navbar a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px 15px;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+/* Carousel Styling */
+.carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: 300px;
+    position: relative;
+    width: 100%;
+}
+
+.slide {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+/* Contact Section Styling */
+.contact-container {
+    display: flex;
+    flex-wrap: wrap; /* Ensures responsiveness */
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.contact-info {
+    width: 45%; /* Ensures proper width on smaller screens */
+}
+
+/* Google Map Styling */
+.map {
+    width: 100%;
+    max-width: 600px;
+    height: 400px;
+    margin-left: auto; /* Align map to the right */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* Section Headings Styling */
+#contact h1, #about h1, #services h1 {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    margin: 0 auto;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 15px; /* Increased height for better appearance */
+    margin-top: 50px;
+}
+
+/* Responsive Design for 1005px & Smaller Screens */
+@media screen and (max-width: 1005px) {
+    header {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar li {
+        margin: 5px 0;
+    }
+
+    .contact-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-info {
+        width: 100%;
+    }
+
+    .map {
+        width: 100%;
+    }
+}
+#services {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#services h1 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+#services p {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+#services ul {
+    list-style: none;
+    padding: 0;
+}
+
+#services ul li {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#about {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+#about h1 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+#about p {
+    color: #555;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+#about-image {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 5px;
+    margin-top: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#home {
+    text-align: center;
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 20px auto;
+}
+
+h1 {
+    color: #333;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+/* Carousel Container */
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 400px;
+    margin: auto;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Slides */
+.slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+/* Active Slide */
+.slide.active {
+    opacity: 1;
+}
+
+.pdf-button {
+    display: inline-block;
+    background-color: #007bff; /* Blue theme */
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pdf-button:hover {
+    background-color: #0056b3; /* Darker blue */
+    transform: scale(1.05);
+}
+
+.pdf-button:active {
+    transform: scale(0.95);
+}
+
+/* #team {
+    text-align: center;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    width: 80%;
+    margin: auto;
+}
+
+.team-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    max-width: 500px;
+    margin: auto;
+}
+
+.team-frame {
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px;
+    border: 3px solid #007bff;
+}
+
+.team-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.team-frame img.active {
+    opacity: 1;
+}
+
+.nav-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 24px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.nav-btn:hover {
+    background-color: #0056b3;
+} */
+
+/* Team Section Styling */
+#team {
+    text-align: center;
+    padding: 40px;
+    background: #ffffff;
+    
+}
+
+.team-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 5px;
+    background: #f9f9f9;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation Buttons */
+.nav-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.nav-btn:hover {
+    background: #0056b3;
+}
+
+/* Team Member Frame */
+.team-frame {
+    display: flex;
+    overflow: hidden;
+    width: 300px;
+    height: 400px;
+    position: relative;
+}
+
+.team-member {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+.team-member.active {
+    display: flex;
+}
+
+/* Team Member Image */
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 3px solid #007bff;
+}
+
+/* Member Name */
+.team-member h2 {
+    font-size: 18px;
+    margin: 5px 0;
+    color: #333;
+}
+
+/* Member Description */
+.team-member p {
+    font-size: 14px;
+    color: #666;
+    max-width: 250px;
+}
