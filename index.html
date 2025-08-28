@@ -3,144 +3,1167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hypo Scan</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <title>Hypo Scan - AI-Powered Brain Imaging</title>
     <link rel="icon" href="DALL·E 2025-02-11 01.32.33 - A professional logo for 'Hypo Scan,' a brain scanning and detection application. The logo should feature the text 'Hypo Scan' in a modern, comfortable.webp" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            /* text-align: center; */
+        /* CSS Variables */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0ea5e9;
+            --accent: #8b5cf6;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #e2e8f0;
+            --text: #334155;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
         img {
             max-width: 100%;
             height: auto;
+            display: block;
         }
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            color: var(--dark);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: #0284c7;
+        }
+
+        /* Header and Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar li {
+            margin: 0 15px;
+        }
+
+        .navbar a {
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .navbar a:hover::after,
+        .navbar a.active::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+
+        /* Hero Section */
+        #home {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #home h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        #home p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Carousel */
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            height: 500px;
+            margin: 40px auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .carousel-dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        /* About Section */
+        #about {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .about-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .pdf-button {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: var(--transition);
+            margin-top: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .pdf-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        /* Services Section */
+        #services {
+            padding: 80px 0;
+            background: var(--light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 0;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card:hover::before {
+            height: 100%;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .service-card p {
+            color: var(--text);
+        }
+
+/* Team Section - Fixed */
+    #team {
+        padding: 80px 0;
+        background: white;
+    }
+
+    .team-container {
+        position: relative;
+        max-width: 800px;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .team-slider {
+        display: flex;
+        width: 100%;
+        transition: transform 0.5s ease;
+    }
+
+    .team-member {
+        min-width: 100%;
+        padding: 30px;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    .member-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-bottom: 20px;
+        border: 3px solid var(--primary);
+    }
+
+    .member-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .member-info h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        color: var(--dark);
+    }
+
+    .member-info p {
+        color: var(--text);
+    }
+
+    .team-nav {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 20px;
+        transform: translateY(-50%);
+        z-index: 10;
+    }
+
+    .team-nav-btn {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary);
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: var(--transition);
+        box-shadow: var(--shadow);
+    }
+
+    .team-nav-btn:hover {
+        background: var(--primary);
+        color: white;
+    }
+
+    .team-dots {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        gap: 10px;
+    }
+
+    .team-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--gray);
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .team-dot.active {
+        background: var(--primary);
+        transform: scale(1.2);
+    }
+
+    /* Hide navigation buttons on mobile */
+    @media (max-width: 768px) {
+        .team-nav {
+            display: none;
+        }
+    }
+        /* Contact Section */
+        #contact {
+            padding: 80px 0;
+            background: var(--light);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-info h2 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-info a {
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .contact-info a:hover {
+            color: var(--primary-dark);
+        }
+
+        .map-container {
+            height: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            margin-bottom: 30px;
+        }
+
+        .footer-bottom {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            #home h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                justify-content: center;
+                transition: var(--transition);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .navbar.active {
+                left: 0;
+            }
+            
+            .navbar li {
+                margin: 15px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            #home h1 {
+                font-size: 2rem;
+            }
+            
+            #home p {
+                font-size: 1.1rem;
+            }
+            
+            .carousel {
+                height: 300px;
+            }
+            
+            .team-nav {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            #home {
+                padding: 100px 0 60px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">
-                <img src="DALL·E 2025-02-11 01.32.33 - A professional logo for 'Hypo Scan,' a brain scanning and detection application. The logo should feature the text 'Hypo Scan' in a modern, comfortable.webp" alt="Website Logo">
-            </div>
-            <ul class="navbar">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact Us</a></li>
-                <li><a href="#team">Hypo Scan Team</a></li>
-            </ul>
-        </nav>
+    <!-- Header and Navigation -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="DALL·E 2025-02-11 01.32.33 - A professional logo for 'Hypo Scan,' a brain scanning and detection application. The logo should feature the text 'Hypo Scan' in a modern, comfortable.webp" alt="Hypo Scan Logo">
+                    <span class="logo-text">Hypo Scan</span>
+                </div>
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="navbar" id="navbar">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#team">Our Team</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    
+
+    <!-- Home/Hero Section -->
     <section id="home">
-        <h1>Welcome to Hypo Scan</h1>
+        <div class="container hero-content">
+            <h1>Welcome to Hypo Scan</h1>
+            <p>AI-Powered Brain Imaging & Monitoring Solutions</p>
+            <a href="#about" class="btn btn-secondary">Learn More</a>
+        </div>
+        
         <div class="carousel">
-            <img class="slide active" src="DALL·E 2025-02-12 06.16.54 - An AI-powered brain imaging and monitoring device named 'Hypo Scan' in a futuristic medical setting. The device should have a sleek, modern design res.webp" alt="Image 1">
-            <img class="slide" src="DALL·E 2025-02-12 06.17.01 - A futuristic AI-powered brain imaging and monitoring device named 'Hypo Scan' in a high-tech medical lab. The device should be a sleek, advanced heads.webp" alt="Image 2">
-            <img class="slide" src="DALL·E 2025-02-12 06.17.06 - A cutting-edge AI-powered brain imaging and monitoring device called 'Hypo Scan' in a futuristic hospital or neuroscience research center. The device .webp" alt="Image 3">
+            <div class="slide active">
+                <img src="DALL·E 2025-02-12 06.16.54 - An AI-powered brain imaging and monitoring device named 'Hypo Scan' in a futuristic medical setting. The device should have a sleek, modern design res.webp" alt="Hypo Scan Device">
+            </div>
+            <div class="slide">
+                <img src="DALL·E 2025-02-12 06.17.01 - A futuristic AI-powered brain imaging and monitoring device named 'Hypo Scan' in a high-tech medical lab. The device should be a sleek, advanced heads.webp" alt="Hypo Scan in Lab">
+            </div>
+            <div class="slide">
+                <img src="DALL·E 2025-02-12 06.17.06 - A cutting-edge AI-powered brain imaging and monitoring device called 'Hypo Scan' in a futuristic hospital or neuroscience research center. The device .webp" alt="Hypo Scan in Hospital">
+            </div>
+            <div class="carousel-controls" id="carouselDots"></div>
         </div>
     </section>
-    
+
+    <!-- About Section -->
     <section id="about">
-        <h1>About Hypo Scan</h1>
-        <p>Hypo Scan is an AI-powered brain imaging and monitoring solution designed to detect, analyze, and track brain activity in real-time. Our cutting-edge technology leverages deep learning and neural analysis to assist in the early detection of neurological conditions, hallucinations, and mental health disorders.</p>
-        
-        <p>We aim to revolutionize brain health diagnostics by integrating artificial intelligence with medical imaging to provide precise, real-time insights. Hypo Scan helps researchers, doctors, and individuals gain a deeper understanding of neural activity and cognitive states.</p>
-        
-        <p>Our mission is to advance neurological research, improve mental health assessments, and create a future where AI-driven brain monitoring enhances lives.</p>
-        <img src="DALL·E 2025-02-11 09.37.09 - A high-tech product image for 'Hypo Scan,' an AI-powered brain imaging and monitoring device. The product should have a sleek, futuristic design, rese.webp" id="about-image">
-        <a href="https://www.dropbox.com/scl/fi/rtsbkp7gpp0k1oikf9iq2/Hypo-Scan-Research-Paper-And-Case-Study.pdf?rlkey=mjtttb5kjl9dqjyk9pmoi35of&st=7fd69vwm&dl=0" 
-        target="_blank" 
-        class="pdf-button">
-        View Research Paper of Hypo Scan
-</a>
-
+        <div class="container">
+            <h2 class="section-title">About Hypo Scan</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hypo Scan is an AI-powered brain imaging and monitoring solution designed to detect, analyze, and track brain activity in real-time. Our cutting-edge technology leverages deep learning and neural analysis to assist in the early detection of neurological conditions, hallucinations, and mental health disorders.</p>
+                    
+                    <p>We aim to revolutionize brain health diagnostics by integrating artificial intelligence with medical imaging to provide precise, real-time insights. Hypo Scan helps researchers, doctors, and individuals gain a deeper understanding of neural activity and cognitive states.</p>
+                    
+                    <p>Our mission is to advance neurological research, improve mental health assessments, and create a future where AI-driven brain monitoring enhances lives.</p>
+                    
+                    <a href="https://www.dropbox.com/scl/fi/rtsbkp7gpp0k1oikf9iq2/Hypo-Scan-Research-Paper-And-Case-Study.pdf?rlkey=mjtttb5kjl9dqjyk9pmoi35of&st=7fd69vwm&dl=0" 
+                       target="_blank" 
+                       class="pdf-button">
+                        View Research Paper
+                    </a>
+                </div>
+                <div class="about-image fade-in">
+                    <img src="DALL·E 2025-02-11 09.37.09 - A high-tech product image for 'Hypo Scan,' an AI-powered brain imaging and monitoring device. The product should have a sleek, futuristic design, rese.webp" alt="Hypo Scan Product">
+                </div>
+            </div>
+        </div>
     </section>
-    
-    
+
+    <!-- Services Section -->
     <section id="services">
-        <h1>Our Services</h1>
-        <p>Hypo Scan offers advanced brain imaging and monitoring solutions powered by AI and deep learning.</p>
-        
-        <ul>
-            <li><strong>Brain Image Analysis:</strong> AI-driven detection and classification of brain scan abnormalities.</li>
-            <li><strong>Hallucination Detection:</strong> Real-time EEG and fMRI monitoring to identify hallucination patterns.</li>
-            <li><strong>AI-Powered Diagnostics:</strong> Machine learning models for predictive brain health assessments.</li>
-            <li><strong>Neural Activity Tracking:</strong> Continuous surveillance of neural signals for mental health insights.</li>
-            <li><strong>Remote Brain Monitoring:</strong> Cloud-based access to brain scan reports and activity logs.</li>
-            <li><strong>Medical Report Generation:</strong> Automated summarization of brain scan results for clinicians.</li>
-        </ul>
-    </section>
-    
-    <section id="team">
-        <h1>Hypo Scan Team</h1>
-        <div class="team-container">
-            <button class="nav-btn left-btn" onclick="prevMember()">&#10094;</button>
-            <div class="team-frame">
-                <div class="team-member active">
-                    <img src="Shani.jpg" alt="Shani Kumar">
-                    <h2>Shani Kumar</h2>
-                    <p>Chief AI & Research Officer (CARO) – Leads AI research, brain imaging algorithms, and hallucination detection development.</p>
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Brain Image Analysis</h3>
+                    <p>AI-driven detection and classification of brain scan abnormalities with high precision and accuracy.</p>
                 </div>
-                <div class="team-member">
-                    <img src="shivamjha.jpg" alt="Shivam Jha">
-                    <h2>Shivam Jha</h2>
-                    <p>Chief Medical Officer (CMO) – Oversees medical research, neurology integration, and clinical validation.</p>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Hallucination Detection</h3>
+                    <p>Real-time EEG and fMRI monitoring to identify hallucination patterns and neurological activity.</p>
                 </div>
-                <div class="team-member">
-                    <img src="Vishamber 5.jpg" alt="Vishamber">
-                    <h2>Vishamber</h2>
-                    <p>Chief Technology Officer (CTO) – Manages software, hardware, and cloud infrastructure for real-time brain scanning.</p>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI-Powered Diagnostics</h3>
+                    <p>Machine learning models for predictive brain health assessments and early condition detection.</p>
                 </div>
-                <div class="team-member">
-                    <img src="Pawan Kushawaha.png" alt="Pawan Kumar Kushawaha">
-                    <h2>Pawan Kumar Kushawaha</h2>
-                    <p>Lead UX & Product Designer – Focuses on user-friendly design, interface, and patient-friendly interactions.</p>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-wave-square"></i>
+                    </div>
+                    <h3>Neural Activity Tracking</h3>
+                    <p>Continuous surveillance of neural signals for mental health insights and cognitive monitoring.</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Remote Brain Monitoring</h3>
+                    <p>Cloud-based access to brain scan reports, activity logs, and real-time monitoring data.</p>
+                </div>
+                
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-file-medical"></i>
+                    </div>
+                    <h3>Medical Report Generation</h3>
+                    <p>Automated summarization of brain scan results for clinicians with detailed analysis.</p>
                 </div>
             </div>
-            <button class="nav-btn right-btn" onclick="nextMember()">&#10095;</button>
         </div>
     </section>
-    
-    
-    
-    <section id="contact">
-        <h1>Contact Us </h1>
-        <div class="contact-container">
-            <div class="contact-info">
-                <h2>Our Address</h2>
-                <p>Hypo Scan, Lamrin Tech Skills University</p>
-                <p>Punjab, India</p>
-                <h3>Contact Information</h3>
-                <p>Phone: <a href="tel:+918930634783">+91 8930634783</a></p>
-<p>Email: <a href="mailto:hyposcan278@gmail.com">hyposcan278@gmail.com</a></p>
 
-            </div>
-        
-            <div class="map">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3424.479629074763!2d76.4748074!3d30.9915264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3905550dacb273c7%3A0x6962bc698f1ce7fd!2sLamrin%20Tech%20Skills%20University!5e0!3m2!1sen!2sin!4v1707654321000" 
-                    allowfullscreen 
-                    loading="lazy"
-                    frameborder="0"
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+    <!-- Team Section -->
+    <section id="team">
+        <div class="container">
+            <h2 class="section-title">Our Team</h2>
+            <div class="team-container">
+                <div class="team-slider">
+                    <div class="team-member active">
+                        <div class="member-image">
+                            <img src="Shani.jpg" alt="Shani Kumar">
+                        </div>
+                        <div class="member-info">
+                            <h3>Shani Kumar</h3>
+                            <p>Chief AI & Research Officer (CARO) – Leads AI research, brain imaging algorithms, and hallucination detection development.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="shivamjha.jpg" alt="Shivam Jha">
+                        </div>
+                        <div class="member-info">
+                            <h3>Shivam Jha</h3>
+                            <p>Chief Medical Officer (CMO) – Oversees medical research, neurology integration, and clinical validation.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="Vishamber 5.jpg" alt="Vishamber">
+                        </div>
+                        <div class="member-info">
+                            <h3>Vishamber</h3>
+                            <p>Chief Technology Officer (CTO) – Manages software, hardware, and cloud infrastructure for real-time brain scanning.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="team-member">
+                        <div class="member-image">
+                            <img src="Pawan Kushawaha.png" alt="Pawan Kumar Kushawaha">
+                        </div>
+                        <div class="member-info">
+                            <h3>Pawan Kumar Kushawaha</h3>
+                            <p>Lead UX & Product Designer – Focuses on user-friendly design, interface, and patient-friendly interactions.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-nav">
+                    <div class="team-nav-btn prev-btn">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="team-nav-btn next-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                
+                <div class="team-dots" id="teamDots"></div>
             </div>
         </div>
-        
     </section>
-    
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Our Address</h2>
+                    <p><i class="fas fa-map-marker-alt"></i> Hypo Scan, Lamrin Tech Skills University</p>
+                    <p>Punjab, India</p>
+                    
+                    <h3>Contact Information</h3>
+                    <p><i class="fas fa-phone"></i> Phone: <a href="tel:+918930634783">+91 8930634783</a></p>
+                    <p><i class="fas fa-envelope"></i> Email: <a href="mailto:hyposcan278@gmail.com">hyposcan278@gmail.com</a></p>
+                </div>
+                
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3424.479629074763!2d76.4748074!3d30.9915264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3905550dacb273c7%3A0x6962bc698f1ce7fd!2sLamrin%20Tech%20Skills%20University!5e0!3m2!1sen!2sin!4v1707654321000" 
+                        allowfullscreen 
+                        loading="lazy"
+                        frameborder="0"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Hypo Scan. All Rights Reserved.</p>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Hypo Scan. All Rights Reserved.</p>
+            </div>
+            <div class="footer-bottom">
+                <p>Advancing Brain Health Through AI Technology</p>
+            </div>
+        </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navigation
+            const header = document.getElementById('header');
+            const hamburger = document.getElementById('hamburger');
+            const navbar = document.getElementById('navbar');
+            
+            // Toggle mobile menu
+            hamburger.addEventListener('click', function() {
+                navbar.classList.toggle('active');
+                hamburger.innerHTML = navbar.classList.contains('active') ? 
+                    '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.navbar a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navbar.classList.remove('active');
+                    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Set active navigation link based on scroll position
+            const sections = document.querySelectorAll('section');
+            const navItems = document.querySelectorAll('.navbar a');
+            
+            function setActiveNavItem() {
+                let currentSection = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+                
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('href') === `#${currentSection}`) {
+                        item.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', setActiveNavItem);
+            
+            // Carousel functionality
+            const slides = document.querySelectorAll('.slide');
+            const carouselDots = document.getElementById('carouselDots');
+            let currentSlide = 0;
+            let slideInterval;
+            
+            // Create dots
+            slides.forEach((_, i) => {
+                const dot = document.createElement('div');
+                dot.classList.add('carousel-dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(i));
+                carouselDots.appendChild(dot);
+            });
+            
+            const dots = document.querySelectorAll('.carousel-dot');
+            
+            function goToSlide(index) {
+                slides[currentSlide].classList.remove('active');
+                dots[currentSlide].classList.remove('active');
+                
+                currentSlide = index;
+                if (currentSlide < 0) currentSlide = slides.length - 1;
+                if (currentSlide >= slides.length) currentSlide = 0;
+                
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+                
+                // Reset the auto slide timer
+                clearInterval(slideInterval);
+                startSlideInterval();
+            }
+            
+            function nextSlide() {
+                goToSlide(currentSlide + 1);
+            }
+            
+            function startSlideInterval() {
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+            
+            // Start the auto slide
+            startSlideInterval();
+            
+            // Pause auto slide when hovering over carousel
+            const carousel = document.querySelector('.carousel');
+            carousel.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+            
+            carousel.addEventListener('mouseleave', startSlideInterval);
+            
+// Team slider functionality - Fixed
+    const teamSlider = document.querySelector('.team-slider');
+    const teamMembers = document.querySelectorAll('.team-member');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const teamDots = document.getElementById('teamDots');
+    let currentMember = 0;
+    let autoSlideInterval;
+
+    // Create dots for team slider
+    teamMembers.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.classList.add('team-dot');
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => showTeamMember(i));
+        teamDots.appendChild(dot);
+    });
+
+    const memberDots = document.querySelectorAll('.team-dot');
+
+    function showTeamMember(index) {
+        // Update current member index
+        currentMember = index;
+        
+        // Handle index boundaries
+        if (currentMember < 0) currentMember = teamMembers.length - 1;
+        if (currentMember >= teamMembers.length) currentMember = 0;
+        
+        // Move the slider
+        teamSlider.style.transform = `translateX(-${currentMember * 100}%)`;
+        
+        // Update active dot
+        memberDots.forEach(dot => dot.classList.remove('active'));
+        memberDots[currentMember].classList.add('active');
+    }
+
+    // Navigation button event listeners
+    prevBtn.addEventListener('click', () => {
+        showTeamMember(currentMember - 1);
+        resetAutoSlide();
+    });
+
+    nextBtn.addEventListener('click', () => {
+        showTeamMember(currentMember + 1);
+        resetAutoSlide();
+    });
+
+    // Auto slide functionality
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(() => {
+            showTeamMember(currentMember + 1);
+        }, 5000); // Change slide every 5 seconds
+    }
+
+    function resetAutoSlide() {
+        clearInterval(autoSlideInterval);
+        startAutoSlide();
+    }
+
+    // Start auto slide on page load
+    startAutoSlide();
+
+    // Pause auto slide when hovering over team section
+    const teamSection = document.getElementById('team');
+    teamSection.addEventListener('mouseenter', () => {
+        clearInterval(autoSlideInterval);
+    });
+
+    teamSection.addEventListener('mouseleave', () => {
+        startAutoSlide();
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            showTeamMember(currentMember - 1);
+            resetAutoSlide();
+        } else if (e.key === 'ArrowRight') {
+            showTeamMember(currentMember + 1);
+            resetAutoSlide();
+        }
+    });
+
+            
+            // PDF button confirmation
+            document.querySelector('.pdf-button').addEventListener('click', function(e) {
+                const userConfirm = confirm("Do you want to open the Hypo Scan Research Paper?");
+                if (!userConfirm) {
+                    e.preventDefault();
+                }
+            });
+            
+            // Intersection Observer for animations
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeIn 1s ease forwards';
+                        fadeObserver.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            fadeElements.forEach(element => {
+                fadeObserver.observe(element);
+            });
+        });
+    </script>
 </body>
 </html>
